@@ -1,0 +1,72 @@
+<div class="col-md-8 offset-md-2 mt-5">
+  <div class="card">
+    <h4 class="card-header text-center">{{userformlabel}}</h4>
+    <div class="card-body">
+      <div class="col-md-12">
+        <form [formGroup]="addForm" novalidate class="form">
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input formControlName="email" type="email" placeholder="Email" name="email" class="form-control" id="email" email="true">
+            <div class="alert  alert-danger" *ngIf="addForm.get('email').hasError('required') && addForm.get('email').touched">
+              Email is required
+            </div>
+            <div class="alert  alert-danger" *ngIf="addForm.get('email').hasError('pattern') ">
+              Email must be a valid email address
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input formControlName="firstName" placeholder="First Name" name="firstName" class="form-control" id="firstName">
+            <div class="alert  alert-danger" *ngIf="addForm.get('firstName').hasError('required') && addForm.get('firstName').touched">
+              First Name is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="middleName">Middle Name:</label>
+            <input formControlName="middleName" placeholder="Middle Name" name="middleName" class="form-control" id="middleName">
+            <div class="alert  alert-danger" *ngIf="addForm.get('middleName').hasError('required') && addForm.get('middleName').touched">
+              Middle Name is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input formControlName="lastName" placeholder="Last Name" name="lastName" class="form-control" id="lastName">
+            <div class="alert  alert-danger" *ngIf="addForm.get('lastName').hasError('required') && addForm.get('lastName').touched">
+              Last Name is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="role">User Role:</label>
+            <select formControlName="role" class="form-control" id="role" name="role">
+              <option disabled>Select User Role</option>
+              <option *ngFor="let role of userRoles">{{role.text}}</option>
+            </select>
+            <div class="alert  alert-danger" *ngIf="addForm.get('role').hasError('required') && addForm.get('role').touched">
+              User Role is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input formControlName="password" type="password" placeholder="Password" name="password" class="form-control" id="password">
+            <div class="alert  alert-danger" *ngIf="addForm.get('password').hasError('required') && addForm.get('password').touched">
+              Password is required
+            </div>
+          </div>
+
+          <button class="btn btn-success" [disabled]='addForm.invalid' (click)="onSubmit()">Save</button>
+
+          <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+
+          <!--<br />
+  <br />
+  <p>Form value: {{ addForm.value | json }}</p>-->
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>

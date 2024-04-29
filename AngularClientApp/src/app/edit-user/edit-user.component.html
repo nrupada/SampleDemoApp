@@ -1,0 +1,39 @@
+<div class="col-md-8 offset-md-2 mt-5">
+  <div class="card">
+    <h4 class="card-header text-center">{{userformlabel}}</h4>
+    <div class="card-body">
+      <div class="col-md-12">
+        <form [formGroup]="editForm" novalidate class="form">
+          <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input formControlName="firstName" placeholder="First Name" name="firstName" class="form-control" id="firstName">
+            <div class="alert  alert-danger" *ngIf="editForm.get('firstName').hasError('required') && editForm.get('firstName').touched">
+              First Name is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="middleName">Middle Name:</label>
+            <input formControlName="middleName" placeholder="Middle Name" name="middleName" class="form-control" id="middleName">
+            <div class="alert  alert-danger" *ngIf="editForm.get('middleName').hasError('required') && editForm.get('middleName').touched">
+              Middle Name is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input formControlName="lastName" placeholder="Last Name" name="lastName" class="form-control" id="lastName">
+            <div class="alert  alert-danger" *ngIf="editForm.get('lastName').hasError('required') && editForm.get('lastName').touched">
+              Last Name is required
+            </div>
+          </div>
+
+          <button class="btn btn-success" [disabled]='editForm.invalid' (click)="onUpdate()">Update</button>
+          <!--<br />
+          <br />
+          <p>Form value: {{ editForm.value | json }}</p>-->
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
